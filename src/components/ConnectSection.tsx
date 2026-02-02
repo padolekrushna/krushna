@@ -19,9 +19,9 @@ export default function ConnectSection() {
   };
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub', username: '@krushna' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', username: 'Krushna Padole' },
-    { icon: Mail, href: 'mailto:krushna@example.com', label: 'Email', username: 'krushna@example.com' },
+    { icon: Github, href: 'https://github.com/padolekrushna', label: 'GitHub', username: '@padolekrushna' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/krushna-padole/', label: 'LinkedIn', username: 'Krushna Padole' },
+    { icon: Mail, href: 'mailto:krushnapadole18@gmail.com', label: 'Email', username: 'krushnapadole18@gmail.com' },
   ];
 
   return (

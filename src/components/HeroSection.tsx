@@ -109,9 +109,9 @@ export default function HeroSection() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { icon: Github, href: 'https://github.com', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-              { icon: Mail, href: 'mailto:krushna@example.com', label: 'Email' },
+              { icon: Github, href: 'https://github.com/padolekrushna', label: 'GitHub' },
+              { icon: Linkedin, href: 'https://www.linkedin.com/in/krushna-padole/', label: 'LinkedIn' },
+              { icon: Mail, href: 'mailto:krushnapadole18@gmail.com', label: 'Email' },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
