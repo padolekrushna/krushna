@@ -1,0 +1,185 @@
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Mail, Linkedin, Github, Send, MapPin, ArrowUpRight } from 'lucide-react';
+
+export default function ConnectSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Open email client with pre-filled message
+    const mailtoLink = `mailto:krushna.padole@example.com?subject=Portfolio Inquiry from ${formData.name}&body=${encodeURIComponent(formData.message)}`;
+    window.location.href = mailtoLink;
+  };
+
+  const socialLinks = [
+    { icon: Github, href: 'https://github.com', label: 'GitHub', username: '@krushna' },
+    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', username: 'Krushna Padole' },
+    { icon: Mail, href: 'mailto:krushna@example.com', label: 'Email', username: 'krushna@example.com' },
+  ];
+
+  return (
+    <section id="connect" className="py-24 md:py-32 relative">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-64 bg-gradient-radial from-primary/10 via-transparent to-transparent blur-3xl" />
+
+      <div className="container mx-auto px-6" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary font-mono text-sm tracking-wider mb-4 block">
+            04. CONTACT
+          </span>
+          <h2 className="section-heading">
+            Let's <span className="gradient-text">Connect</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+            Whether you have a project in mind or just want to chat about AI, I'm always open to new opportunities and collaborations.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <div className="space-y-4">
+              <h3 className="text-2xl font-display font-semibold">
+                Get in Touch
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                I'm currently available for freelance projects, full-time opportunities, and interesting AI/ML collaborations. Let's build something amazing together!
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <MapPin className="w-5 h-5 text-primary" />
+              <span>Pune, India</span>
+            </div>
+
+            {/* Social Links */}
+            <div className="space-y-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="flex items-center gap-4 p-4 glass-card rounded-xl group hover:border-primary/30 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-colors">
+                    <social.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-grow">
+                    <p className="font-medium group-hover:text-primary transition-colors">
+                      {social.label}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {social.username}
+                    </p>
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/50"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/50"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none placeholder:text-muted-foreground/50"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
+              >
+                <Send className="w-5 h-5" />
+                Send Message
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-24 pt-8 border-t border-border text-center"
+        >
+          <p className="text-muted-foreground text-sm">
+            Designed & Built by{' '}
+            <span className="text-primary font-medium">Krushna Padole</span>
+          </p>
+          <p className="text-muted-foreground/50 text-xs mt-2">
+            © {new Date().getFullYear()} All rights reserved.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
