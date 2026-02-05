@@ -6,7 +6,7 @@ import { toast } from '@/hooks/use-toast';
 
 // EmailJS Configuration
 const EMAILJS_SERVICE_ID = 'service_uwg2aut';
-const EMAILJS_TEMPLATE_ID = 'template_gy4bjps';
+const EMAILJS_TEMPLATE_ID = 'template_i2qawgj';
 const EMAILJS_PUBLIC_KEY = 'xzROrMGACDIM6NHmJ';
 
 export default function ConnectSection() {
