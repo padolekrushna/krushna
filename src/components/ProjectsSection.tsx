@@ -41,7 +41,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: index * 0.2 }}
-              className="project-card group"
+              className="project-card group hover:border-primary/30"
             >
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Project Icon */}
@@ -112,7 +112,7 @@ export default function ProjectsSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="glass-card p-6 rounded-xl group cursor-pointer"
+                className="glass-card p-6 rounded-xl group cursor-pointer hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
