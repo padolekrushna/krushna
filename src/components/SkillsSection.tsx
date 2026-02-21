@@ -101,11 +101,12 @@ export default function SkillsSection() {
           <h3 className="text-2xl font-display font-semibold text-center mb-8">
             Certifications
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: 'Data Analyst Career Track', org: 'WorldQuant University' },
               { name: 'Oracle Cloud Certification', org: 'Oracle University' },
               { name: 'AI/ML Specialization', org: 'Coursera' },
+              { name: 'Microsoft Azure Fundamentals (AZ-900)', org: 'Microsoft' },
             ].map((cert, index) => (
               <motion.div
                 key={cert.name}
@@ -113,9 +114,9 @@ export default function SkillsSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className="glass-card p-6 rounded-xl text-center"
+                className="glass-card p-6 rounded-xl text-center group hover:border-primary/30 transition-all duration-300"
               >
-                <p className="font-medium mb-1">{cert.name}</p>
+                <p className="font-medium mb-1 group-hover:text-primary transition-colors">{cert.name}</p>
                 <p className="text-sm text-muted-foreground">{cert.org}</p>
               </motion.div>
             ))}

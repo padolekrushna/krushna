@@ -8,7 +8,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh">
       <Scene3D />
       
       {/* Gradient overlays */}
@@ -22,8 +22,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 relative"
           >
+            <span className="absolute inset-0 rounded-full border border-green-400/30 animate-ping" />
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-sm text-muted-foreground font-medium">
               Available for opportunities

@@ -93,4 +93,16 @@ export const projects: Project[] = [
       'Built anomaly detection system using OpenCV and YOLO for real-time crop monitoring',
     ],
   },
+  {
+    id: 'brain-mri-classification',
+    title: 'CNN-Based Brain MRI Tumor Classification',
+    domain: 'Healthcare / Medical Imaging',
+    duration: '2024',
+    techStack: ['Python', 'TensorFlow/Keras', 'CNN', 'Image Processing', 'Data Augmentation', 'Model Evaluation'],
+    description: 'Developed a deep learning model using Convolutional Neural Networks (CNN) to classify brain MRI images into tumor and non-tumor categories.',
+    highlights: [
+      'Applied image preprocessing and data augmentation techniques to improve model accuracy and generalization',
+      'Evaluated performance using accuracy and confusion matrix metrics',
+    ],
+  },
 ];

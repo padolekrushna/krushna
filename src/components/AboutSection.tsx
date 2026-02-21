@@ -68,13 +68,13 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <h3 className="text-2xl md:text-3xl font-display font-semibold">
-              AI/ML Engineer at{' '}
-              <span className="text-primary">Konverge.AI</span>
+              <span className="gradient-text">AI/ML Engineer</span>
+              <span className="text-muted-foreground text-lg font-normal ml-2">| Driving Enterprise AI Solutions</span>
             </h3>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm an <span className="text-foreground font-medium">AI/ML Engineer</span> with over 2 years of experience delivering production-grade solutions across Machine Learning, Deep Learning, Generative AI, and Agentic AI.
+                I'm an <span className="text-foreground font-medium">AI/ML Engineer</span> with over 2 years of experience delivering production-grade solutions across Machine Learning, Deep Learning, Generative AI, and Agentic AI. I've contributed to <span className="text-primary font-medium">high-impact enterprise projects valued at $150M+</span>, building scalable AI systems that drive real business outcomes.
               </p>
               <p>
                 My expertise spans <span className="text-primary">fine-tuning LLMs</span>, building ML pipelines, and deploying scalable AI systems on AWS and Azure using MLOps best practices. I'm skilled in <span className="text-secondary">Computer Vision</span>, <span className="text-primary">NLP</span>, and <span className="text-secondary">Multimodal AI</span> with hands-on experience in model optimization, quantization, and distributed training.
@@ -122,11 +122,25 @@ export default function AboutSection() {
                 <span className="w-8 h-0.5 bg-primary" />
                 Education
               </h4>
-              <div className="glass-card p-4 rounded-xl">
-                <p className="font-medium">B.Sc. Data Science</p>
-                <p className="text-muted-foreground text-sm">
-                  Savitribai Phule Pune University • 2022 - 2026
-                </p>
+              <div className="space-y-3">
+                <div className="glass-card p-4 rounded-xl">
+                  <p className="font-medium">B.Sc. Data Science</p>
+                  <p className="text-muted-foreground text-sm">
+                    Savitribai Phule Pune University • 2022 - 2026
+                  </p>
+                </div>
+                <div className="glass-card p-4 rounded-xl">
+                  <p className="font-medium">12th (HSC) — CBSE</p>
+                  <p className="text-muted-foreground text-sm">
+                    Kendriya Vidyalaya VRDE • 73%
+                  </p>
+                </div>
+                <div className="glass-card p-4 rounded-xl">
+                  <p className="font-medium">10th (SSC) — CBSE</p>
+                  <p className="text-muted-foreground text-sm">
+                    Kendriya Vidyalaya VRDE • 82%
+                  </p>
+                </div>
               </div>
             </motion.div>
           </motion.div>
