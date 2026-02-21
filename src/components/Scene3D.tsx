@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Sphere, Torus, Icosahedron, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -113,7 +113,7 @@ function Particles({ count = 200 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#00d4ff"
+        color="#0099cc"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -149,8 +149,8 @@ function NeuralNetwork() {
         <mesh key={i} position={pos}>
           <sphereGeometry args={[0.08, 16, 16]} />
           <meshStandardMaterial
-            color="#00d4ff"
-            emissive="#00d4ff"
+            color="#0099cc"
+            emissive="#0099cc"
             emissiveIntensity={0.5}
           />
         </mesh>
@@ -160,31 +160,56 @@ function NeuralNetwork() {
 }
 
 export default function Scene3D() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reduce complexity on mobile for Safari compatibility
+  const particleCount = isMobile ? 100 : 300;
+
   return (
-    <div className="absolute inset-0 -z-10">
+    <div className="absolute inset-0 -z-10" style={{ touchAction: 'auto' }}>
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={isMobile ? [1, 1.5] : [1, 2]}
+        gl={{ 
+          antialias: !isMobile, 
+          alpha: true, 
+          powerPreference: 'high-performance',
+          failIfMajorPerformanceCaveat: false,
+        }}
+        style={{ touchAction: 'auto' }}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
-        <pointLight position={[-5, 5, 5]} intensity={0.5} color="#00d4ff" />
+        <pointLight position={[-5, 5, 5]} intensity={0.5} color="#0099cc" />
         <pointLight position={[5, -5, -5]} intensity={0.3} color="#8b5cf6" />
         
-        <FloatingIcosahedron position={[-4, 2, -2]} color="#00d4ff" speed={0.8} />
+        <FloatingIcosahedron position={[-4, 2, -2]} color="#0099cc" speed={0.8} />
         <FloatingIcosahedron position={[5, -1, -3]} color="#8b5cf6" speed={0.6} />
-        <FloatingSphere position={[-3, -2, -1]} color="#00d4ff" size={0.6} />
-        <FloatingSphere position={[4, 3, -4]} color="#8b5cf6" size={0.4} />
-        <FloatingTorus position={[-5, 0, -4]} color="#00d4ff" />
+        {!isMobile && (
+          <>
+            <FloatingSphere position={[-3, -2, -1]} color="#0099cc" size={0.6} />
+            <FloatingSphere position={[4, 3, -4]} color="#8b5cf6" size={0.4} />
+          </>
+        )}
+        <FloatingTorus position={[-5, 0, -4]} color="#0099cc" />
         <FloatingTorus position={[3, 2, -2]} color="#8b5cf6" />
         
-        <Particles count={300} />
-        <NeuralNetwork />
+        <Particles count={particleCount} />
+        {!isMobile && <NeuralNetwork />}
         
         <OrbitControls 
           enableZoom={false} 
           enablePan={false}
+          enableRotate={!isMobile}
           autoRotate
           autoRotateSpeed={0.3}
           maxPolarAngle={Math.PI / 2}

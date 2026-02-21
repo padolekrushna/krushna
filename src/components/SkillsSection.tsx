@@ -55,6 +55,12 @@ export default function SkillsSection() {
           <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
             A comprehensive toolkit spanning the entire AI/ML lifecycle, from research to production deployment.
           </p>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="gradient-line w-32 mx-auto mt-4"
+          />
         </motion.div>
 
         <div className="space-y-12">
@@ -64,10 +70,15 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: categoryIndex * 0.15 }}
-              className="glass-card p-6 md:p-8 rounded-2xl"
+              whileHover={{ scale: 1.01 }}
+              className="glass-card p-6 md:p-8 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
               <h3 className={`text-xl font-display font-semibold mb-6 flex items-center gap-3 ${category.color === 'primary' ? 'text-primary' : 'text-secondary'}`}>
-                <span className={`w-3 h-3 rounded-full ${category.color === 'primary' ? 'bg-primary' : 'bg-secondary'}`} />
+                <motion.span
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: categoryIndex * 0.3 }}
+                  className={`w-3 h-3 rounded-full ${category.color === 'primary' ? 'bg-primary' : 'bg-secondary'}`}
+                />
                 {category.title}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -80,7 +91,7 @@ export default function SkillsSection() {
                       duration: 0.4,
                       delay: categoryIndex * 0.15 + skillIndex * 0.05,
                     }}
-                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileHover={{ scale: 1.1, y: -3 }}
                     className="skill-tag cursor-default"
                   >
                     {skill}
@@ -113,8 +124,8 @@ export default function SkillsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="glass-card p-6 rounded-xl text-center group hover:border-primary/30 transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="glass-card p-6 rounded-xl text-center group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
               >
                 <p className="font-medium mb-1 group-hover:text-primary transition-colors">{cert.name}</p>
                 <p className="text-sm text-muted-foreground">{cert.org}</p>

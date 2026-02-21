@@ -8,7 +8,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh">
+    <section id="home" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden gradient-mesh">
       <Scene3D />
       
       {/* Gradient overlays */}
@@ -24,8 +24,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 relative"
           >
-            <span className="absolute inset-0 rounded-full border border-green-400/30 animate-ping" />
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="absolute inset-0 rounded-full border border-emerald-500/30 animate-ping" style={{ animationDuration: '2s' }} />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-sm text-muted-foreground font-medium">
               Available for opportunities
             </span>
@@ -42,7 +42,7 @@ export default function HeroSection() {
             <span className="gradient-text">Krushna</span>
           </motion.h1>
 
-          {/* Subtitle with typewriter effect */}
+          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,6 +55,14 @@ export default function HeroSection() {
             <span className="inline-block w-0.5 h-6 ml-1 bg-primary cursor-blink" />
           </motion.div>
 
+          {/* Gradient accent line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="gradient-line w-48 mx-auto mb-8"
+          />
+
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -63,9 +71,9 @@ export default function HeroSection() {
             className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             2+ years crafting production-grade AI solutions across{' '}
-            <span className="text-primary">LLMs</span>,{' '}
-            <span className="text-secondary">Computer Vision</span>, and{' '}
-            <span className="text-primary">Agentic AI</span>. 
+            <span className="text-primary font-medium">LLMs</span>,{' '}
+            <span className="text-secondary font-medium">Computer Vision</span>, and{' '}
+            <span className="text-primary font-medium">Agentic AI</span>. 
             Transforming complex problems into elegant, scalable systems.
           </motion.p>
 
@@ -82,7 +90,7 @@ export default function HeroSection() {
                 e.preventDefault();
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
