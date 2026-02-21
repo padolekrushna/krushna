@@ -1,13 +1,11 @@
-import React from 'react';
+// AboutSection.tsx
+// Other code here...
 
-const AboutSection = () => {
-    return (
-        <div>
-            <h1>About Us</h1>
-            <p>We deliver high-impact enterprise projects.</p>  {/* updated text */}
-            {/* other content */}
-        </div>
-    );
-};
+// Education Section
+// Line 156: Update B.Sc. Data Science dates
+const education = [
+  { degree: 'B.Sc. Data Science', dates: '2022 - 2025' },
+  // Other education entries...
+];
 
-export default AboutSection;
+// Other code continues...
