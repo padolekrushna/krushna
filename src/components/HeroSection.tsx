@@ -1,14 +1,15 @@
 import React from 'react';
-import './HeroSection.css';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
-    <div className="hero-section">
-      <h1>Welcome to Krushna</h1>
-      <p>Your go-to solution for everything.</p>
-      <motion.div className="status-badge">
-        {/* Removed the "Available for opportunities" text */}
+    <div>
+      <h1>Welcome to my portfolio!</h1>
+      <motion.div>
+        {/* Replaced the text section with an empty fragment */}
       </motion.div>
+      <p>This is my resume.</p>
+      <p>Check out my projects below.</p>
     </div>
   );
 };
