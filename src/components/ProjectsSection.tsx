@@ -11,7 +11,7 @@ export default function ProjectsSection() {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative">
+    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 right-0 w-1/2 h-96 bg-gradient-to-l from-secondary/5 to-transparent blur-3xl -translate-y-1/2" />
 
@@ -31,6 +31,12 @@ export default function ProjectsSection() {
           <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
             Production-grade AI solutions that drive measurable business impact across diverse industries.
           </p>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="gradient-line w-32 mx-auto mt-4"
+          />
         </motion.div>
 
         {/* Featured Projects */}
@@ -41,20 +47,24 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: index * 0.2 }}
+              whileHover={{ y: -4 }}
               className="project-card group hover:border-primary/30"
             >
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Project Icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300"
+                  >
                     <Layers className="w-8 h-8 text-primary" />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Content */}
                 <div className="flex-grow space-y-4">
                   <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-xl md:text-2xl font-display font-semibold">
+                    <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
@@ -72,10 +82,16 @@ export default function ProjectsSection() {
 
                   <ul className="space-y-2">
                     {project.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: index * 0.2 + i * 0.1 + 0.3 }}
+                        className="flex items-start gap-3 text-sm text-muted-foreground"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                         {highlight}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
 
@@ -111,13 +127,16 @@ export default function ProjectsSection() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 className="glass-card p-6 rounded-xl group cursor-pointer hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                  <motion.div
+                    whileHover={{ rotate: 10 }}
+                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center"
+                  >
                     <Layers className="w-6 h-6 text-primary" />
-                  </div>
+                  </motion.div>
                   <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
 

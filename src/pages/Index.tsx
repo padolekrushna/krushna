@@ -7,7 +7,7 @@ import ConnectSection from '@/components/ConnectSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden noise-overlay">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
       <main>
         <HeroSection />

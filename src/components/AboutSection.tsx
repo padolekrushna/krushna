@@ -14,7 +14,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-24 md:py-32 relative">
+    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-0 w-1/2 h-96 bg-gradient-to-r from-primary/5 to-transparent blur-3xl -translate-y-1/2" />
       
@@ -31,6 +31,12 @@ export default function AboutSection() {
           <h2 className="section-heading">
             Crafting <span className="gradient-text">Intelligence</span>
           </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="gradient-line w-32 mx-auto mt-4"
+          />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -43,20 +49,32 @@ export default function AboutSection() {
           >
             <div className="relative">
               {/* Glow effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-2xl opacity-30 scale-110" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-2xl opacity-20 scale-110" />
               
+              {/* Gradient border ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-2 rounded-full"
+                style={{
+                  background: 'conic-gradient(from 0deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)), transparent, hsl(var(--gradient-start)))',
+                  WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))',
+                  mask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))',
+                }}
+              />
+
               {/* Image container */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden profile-glow border-4 border-primary/30">
                 <img
                   src={profileImage}
                   alt="Krushna Padole - AI Engineer"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
 
               {/* Decorative ring */}
-              <div className="absolute -inset-4 rounded-full border border-primary/20 animate-spin-slow" />
-              <div className="absolute -inset-8 rounded-full border border-secondary/10" />
+              <div className="absolute -inset-8 rounded-full border border-primary/10" />
             </div>
           </motion.div>
 
@@ -73,15 +91,27 @@ export default function AboutSection() {
             </h3>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
                 I'm an <span className="text-foreground font-medium">AI/ML Engineer</span> with over 2 years of experience delivering production-grade solutions across Machine Learning, Deep Learning, Generative AI, and Agentic AI. I've contributed to <span className="text-primary font-medium">high-impact enterprise projects valued at $150M+</span>, building scalable AI systems that drive real business outcomes.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 My expertise spans <span className="text-primary">fine-tuning LLMs</span>, building ML pipelines, and deploying scalable AI systems on AWS and Azure using MLOps best practices. I'm skilled in <span className="text-secondary">Computer Vision</span>, <span className="text-primary">NLP</span>, and <span className="text-secondary">Multimodal AI</span> with hands-on experience in model optimization, quantization, and distributed training.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
                 I specialize in integrating enterprise-grade AI applications with secure, compliant architectures, ensuring reliability, explainability, and regulatory alignment across <span className="text-primary">Banking</span>, <span className="text-secondary">Legal</span>, <span className="text-primary">Healthcare</span>, and <span className="text-secondary">Industrial IoT</span> domains.
-              </p>
+              </motion.p>
             </div>
 
             {/* Stats */}
@@ -89,25 +119,24 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
             >
               {stats.map((stat, index) => (
-                <div
+                <motion.div
                   key={stat.label}
-                  className="text-center p-4 glass-card rounded-xl"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1, type: 'spring' }}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  className="text-center p-4 glass-card rounded-xl cursor-default transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/10"
                 >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    className="text-3xl md:text-4xl font-display font-bold gradient-text mb-1"
-                  >
+                  <div className="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">
                     {stat.value}
-                  </motion.div>
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
 
@@ -123,24 +152,22 @@ export default function AboutSection() {
                 Education
               </h4>
               <div className="space-y-3">
-                <div className="glass-card p-4 rounded-xl">
-                  <p className="font-medium">B.Sc. Data Science</p>
-                  <p className="text-muted-foreground text-sm">
-                    Savitribai Phule Pune University • 2022 - 2026
-                  </p>
-                </div>
-                <div className="glass-card p-4 rounded-xl">
-                  <p className="font-medium">12th (HSC) — CBSE</p>
-                  <p className="text-muted-foreground text-sm">
-                    Kendriya Vidyalaya VRDE • 73%
-                  </p>
-                </div>
-                <div className="glass-card p-4 rounded-xl">
-                  <p className="font-medium">10th (SSC) — CBSE</p>
-                  <p className="text-muted-foreground text-sm">
-                    Kendriya Vidyalaya VRDE • 82%
-                  </p>
-                </div>
+                {[
+                  { title: 'B.Sc. Data Science', sub: 'Savitribai Phule Pune University • 2022 - 2026' },
+                  { title: '12th (HSC) — CBSE', sub: 'Kendriya Vidyalaya VRDE • 73%' },
+                  { title: '10th (SSC) — CBSE', sub: 'Kendriya Vidyalaya VRDE • 82%' },
+                ].map((edu, i) => (
+                  <motion.div
+                    key={edu.title}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.9 + i * 0.1 }}
+                    className="glass-card p-4 rounded-xl hover:border-primary/20 transition-colors duration-300"
+                  >
+                    <p className="font-medium">{edu.title}</p>
+                    <p className="text-muted-foreground text-sm">{edu.sub}</p>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </motion.div>
